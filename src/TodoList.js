@@ -1,10 +1,10 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
 
-function TodoList(props) {
+function TodoList({ todoList }) {
     return(
         <ul>
-            {props.todoList.map((item) => (
+            {todoList.map((item) => (
                 <TodoListItem key={item.id} todo={item} />
             ))}
         </ul>
