@@ -3,10 +3,15 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
 function App() {
-  const [todoList, setTodoList] = React.useState([]);
+  const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
+  const [todoList, setTodoList] = React.useState(savedTodoList);
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo])
   }
+
+  React.useEffect(() => {
+    localStorage.setItem('savedTodoList',JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
     <div>
