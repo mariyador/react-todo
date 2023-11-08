@@ -10,7 +10,7 @@ function useSemiPersistentState() {
   React.useEffect(() => {
     localStorage.setItem('savedTodoList',JSON.stringify(todoList));
   }, [todoList]);
-  
+
   return [todoList, setTodoList]
 }
 
@@ -22,11 +22,11 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} />
-    </div>
+    </>
   );
 }
 
