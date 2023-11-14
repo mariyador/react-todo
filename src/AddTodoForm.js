@@ -25,7 +25,9 @@ function AddTodoForm({ onAddTodo }) {
                 name="title"
                 value={todoTitle}
                 onChange={handleTitleChange}
-            />
+            >
+            Title:
+            </InputWithLabel>
             <button type="submit">Add</button>
         </form>
     )

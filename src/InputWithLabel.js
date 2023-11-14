@@ -3,7 +3,7 @@ import React from "react"
 function InputWithLabel(props) {
    return (
     <>
-        <label htmlFor={props.id}>{props.label}</label> 
+        <label htmlFor={props.id}>{props.children}</label> 
         <input 
             type={props.type} 
             id={props.id} 
