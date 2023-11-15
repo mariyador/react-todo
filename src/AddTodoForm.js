@@ -19,7 +19,6 @@ function AddTodoForm({ onAddTodo }) {
     return (
         <form onSubmit={handleAddTodo}>
             <InputWithLabel
-                label="Title: "
                 id="todoList"
                 type="text"
                 name="title"
