@@ -103,6 +103,12 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/new"
+          element={
+            <h1>New Toso List</h1>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
