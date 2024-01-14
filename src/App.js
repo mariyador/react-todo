@@ -32,10 +32,10 @@ function App() {
       const todos = data.records.map((record) => ({
         title: record.fields.title,
         id: record.id,
+        timestamp: record.createdTime,
       }));
 
-      setTodoList(todos);
-      setIsLoading(false);
+      setTodoList(todos.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));      setIsLoading(false);
     } catch (apiError) {
       console.error('API Error fetching data:', apiError.message);
       // If API fetch fails, it will fetch from local storage
@@ -60,9 +60,33 @@ function App() {
     setTodoList([...todoList, newTodo])
   };
 
+  //Delete from Airtable
+  const deleteTodoFromAirtable = async (id) => {
+    const apiOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      },
+    };
+
+    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+
+    try {
+      const response = await fetch(apiUrl, apiOptions);
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+
+      const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+      setTodoList(updatedTodoList);
+    } catch (apiError) {
+      console.error('API Error deleting data:', apiError.message);
+    }
+  };
+
   const removeTodo = (id) => {
-    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updatedTodoList);
+    deleteTodoFromAirtable(id);
   };
 
   return (
