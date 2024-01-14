@@ -11,20 +11,20 @@ function App() {
 
 
   const fetchData = async () => {
-    const options = {
+    const apiOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
       },
     };
 
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
 
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(apiUrl, apiOptions);
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
+        throw new Error(`API Error: ${response.status}`);
       }
 
       const data = await response.json();
@@ -36,8 +36,13 @@ function App() {
 
       setTodoList(todos);
       setIsLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error.message);
+    } catch (apiError) {
+      console.error('API Error fetching data:', apiError.message);
+      // If API fetch fails, it will fetch from local storage
+      const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList')) || [];
+      setTodoList(savedTodoList);
+    } finally {
+      setIsLoading(false);
     }
   } 
 
@@ -50,32 +55,6 @@ function App() {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      const myPromise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({
-            data: {
-              todoList: JSON.parse(localStorage.getItem('savedTodoList')) || [],
-            },
-          });
-        }, 2000);
-      });
-
-      myPromise
-        .then((result) => {
-          setTodoList(result.data.todoList);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    };
-
-    fetchData();
-  }, []); 
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo])
