@@ -5,12 +5,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import style from './App.module.css';
 
 
-
 function App() {
 
   const [todoList, setTodoList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-
 
   const fetchData = async () => {
     const apiOptions = {
@@ -104,6 +102,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
 
 export default App;
