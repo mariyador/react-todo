@@ -1,7 +1,9 @@
 import React from 'react';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import style from './App.module.css';
+
 
 
 function App() {
@@ -67,6 +69,16 @@ function App() {
 
   return (
     <BrowserRouter>
+       <nav>
+      <ul className={style.NavLink}>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/new">New Todo</Link>
+        </li>
+      </ul>
+    </nav>
       <Routes>
         <Route
           path="/"

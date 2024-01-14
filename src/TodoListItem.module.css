@@ -1,3 +1,32 @@
-.ListItem {
-    color:rgb(67, 135, 112)
-}
+.TodoListItem {
+    display: flex;
+    align-items: center;    
+    }
+
+    .ListItem {
+    color:rgb(180, 194, 189);
+    margin-top: 1%;
+    margin-left: 2%;
+    }
+
+    .Button {
+    margin-left: 10px;
+    font-family: 'Caveat', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+    }
+
+    .Icon {
+    margin-right: 5px;
+    font-size: 15px;
+    }
+
+    @media only screen and (max-width: 599px) {
+        .Icon {
+            font-size: 10px;
+        }
+        .Button {
+            font-size: 15px;
+          }
+    }
+ 

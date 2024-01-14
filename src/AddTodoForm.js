@@ -1,5 +1,8 @@
 import React from 'react';
 import InputWithLabel from './InputWithLabel';
+import style from './AddTodoForm.module.css';
+import { FaPlus } from 'react-icons/fa';
+
 
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = React.useState('');
@@ -17,18 +20,21 @@ function AddTodoForm({ onAddTodo }) {
     }
     
     return (
-        <form onSubmit={handleAddTodo}>
-            <InputWithLabel
-                id="todoList"
-                type="text"
-                name="title"
-                value={todoTitle}
-                onChange={handleTitleChange}
-            >
-            Title:
-            </InputWithLabel>
-            <button type="submit">Add</button>
-        </form>
+        <form onSubmit={handleAddTodo} className={style.AddTodoForm}>
+        <InputWithLabel
+          id="todoList"
+          type="text"
+          name="title"
+          value={todoTitle}
+          onChange={handleTitleChange}      
+        >
+          Title:
+        </InputWithLabel>
+        <button type="submit" className={style.Button}>
+        <FaPlus className={style.Icon} />
+          Add
+        </button>
+      </form>
     )
 }
 

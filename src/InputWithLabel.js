@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import style from './AddTodoForm.module.css';
 
 function InputWithLabel(props) {
     const inputRef = React.useRef();
@@ -17,6 +18,7 @@ function InputWithLabel(props) {
             name={props.name}
             value={props.value} 
             onChange={props.onChange}
+            className={style.Input}
         />
     </>
    )
