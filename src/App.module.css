@@ -1,0 +1,59 @@
+body {
+    background-color: rgb(50, 78, 65);
+    color:rgb(225, 231, 228);
+    font-family: 'Caveat', sans-serif;
+    font-size: 25px;
+}
+ 
+.NavLink {
+    list-style-position: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: center;
+}
+  
+.NavLink li {
+    display: inline-block;
+    margin-right: 20px;
+}
+  
+.NavLink a {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+}
+
+h1{
+    font-size: 35px;
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 599px) {
+    body{
+        font-size: 15px;
+    }
+    .NavLink a {
+        text-decoration: none;
+        color: black;
+        font-size: 23px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    .Input {
+        width: 100%;
+    }
+}
+/* Media query for tablets */
+@media only screen and (min-width: 600px) {
+    .Input {
+        width: 50%;
+    }
+}
+
+/* Media query for desktops */
+@media only screen and (min-width: 1024px) {
+    .Input {
+        width: 30%;
+    }
+}

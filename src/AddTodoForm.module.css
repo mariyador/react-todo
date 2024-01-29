@@ -1,0 +1,38 @@
+.AddTodoForm {
+    display: flex;
+    align-items: center;
+  }
+
+  .Input {
+    margin-left: 10px;
+    width: 30%;
+    height: 25px;
+    border: 1px solid #2d2c2c;
+    border-radius: 5px;
+  }
+   
+  .Button {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-family: 'Caveat', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  
+  .Icon {
+    margin-right: 5px;
+    font-size: 15px;
+  }
+
+  @media only screen and (max-width: 599px) {
+    .Input {
+        height: 15px;
+    }
+    .Icon {
+        font-size: 10px;
+    }
+    .Button {
+        font-size: 15px;
+      }
+}
