@@ -9,6 +9,9 @@ function TodoContainer({ tableName }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
+
+    const viewQueryParam = 'Grid%20view';
+
     const apiOptions = {
       method: 'GET',
       headers: {
@@ -16,7 +19,7 @@ function TodoContainer({ tableName }) {
       },
     };
 
-    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?view=${viewQueryParam}`;
 
     try {
       const response = await fetch(apiUrl, apiOptions);
@@ -30,10 +33,9 @@ function TodoContainer({ tableName }) {
       const todos = data.records.map((record) => ({
         title: record.fields.title,
         id: record.id,
-        timestamp: record.createdTime,
       }));
-
-      setTodoList(todos.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)));      setIsLoading(false);
+      setTodoList(todos);
+      setIsLoading(false);
     } catch (apiError) {
       console.error('API Error fetching data:', apiError.message);
       // If API fetch fails, it will fetch from local storage
