@@ -2,6 +2,7 @@ import React from 'react';
 import InputWithLabel from './InputWithLabel';
 import style from './AddTodoForm.module.css';
 import { FaPlus } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = React.useState('');
@@ -62,5 +63,9 @@ function AddTodoForm({ onAddTodo }) {
       </form>
     )
 }
+
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func,
+};
 
 export default AddTodoForm;
