@@ -19,7 +19,9 @@ function TodoContainer({ tableName }) {
       },
     };
 
-    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?view=${viewQueryParam}`;
+    const sortQueryParam = 'sort[0][field]=title&sort[0][direction]=asc'
+
+    const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?view=${viewQueryParam}&${sortQueryParam}`;
 
     try {
       const response = await fetch(apiUrl, apiOptions);
