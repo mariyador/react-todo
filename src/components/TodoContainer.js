@@ -31,8 +31,12 @@ function TodoContainer({ tableName }) {
       }
 
       const data = await response.json();
-     
-      const todos = data.records.map((record) => ({
+
+      const sortedTodos = data.records.sort((objectA, objectB) =>
+      objectB.fields.title.localeCompare(objectA.fields.title)
+    );
+
+      const todos = sortedTodos.map((record) => ({
         title: record.fields.title,
         id: record.id,
       }));
