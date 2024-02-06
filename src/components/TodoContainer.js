@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
@@ -9,7 +9,8 @@ function TodoContainer({ tableName }) {
   const [isLoading, setIsLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('asc');
 
-  const fetchData = async () => {
+  // Function to fetch data from Airtable
+  const fetchData = useCallback(async ()  => {
 
     const viewQueryParam = 'Grid%20view';
 
@@ -20,6 +21,7 @@ function TodoContainer({ tableName }) {
       },
     };
 
+    // Constructing the API URL with view and sort parameters
     const sortQueryParam = 'sort[0][field]=title&sort[0][direction]=asc'
 
     const apiUrl = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?view=${viewQueryParam}&${sortQueryParam}`;
@@ -33,12 +35,14 @@ function TodoContainer({ tableName }) {
 
       const data = await response.json();
 
+      // Sorting the fetched todos based on the current sortOrder
       const sortedTodos = data.records.sort((objectA, objectB) =>
       sortOrder === 'asc'
         ? objectA.fields.title.localeCompare(objectB.fields.title)
         : objectB.fields.title.localeCompare(objectA.fields.title)
-    );
+      );
 
+      // Mapping the sorted todos to a simplified format and updating state
       const todos = sortedTodos.map((record) => ({
         title: record.fields.title,
         id: record.id,
@@ -53,27 +57,31 @@ function TodoContainer({ tableName }) {
     } finally {
       setIsLoading(false);
     }
-  } 
-
+  }, [sortOrder]);
+    
+  // Function to toggle sorting order (asc/desc)
   const toggleSortOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  // useEffect to fetch data when tableName or sortOrder changes
   useEffect(() => {
     fetchData()
-  }, [tableName, sortOrder]);
-
+  }, [fetchData, sortOrder]);
+  
+  // useEffect to save todos to local storage when todoList or isLoading changes
   useEffect(() => {
     if (!isLoading) {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
 
+  // Function to add a new todo
   const addTodo = (title) => {
     setTodoList([...todoList, title]);
   };
 
-  //Delete from Airtable
+  // Function to delete a todo from Airtable
   const remoteTodo = async (id) => {
     const apiOptions = {
       method: 'DELETE',
@@ -90,7 +98,8 @@ function TodoContainer({ tableName }) {
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);
       }
-
+      
+      // Updating state after successful deletion
       const updatedTodoList = todoList.filter((todo) => todo.id !== id);
       setTodoList(updatedTodoList);
     } catch (apiError) {
@@ -98,30 +107,33 @@ function TodoContainer({ tableName }) {
     }
   };
 
+  // Function to handle removal of a todo
   const removeTodo = (id) => {
     remoteTodo(id);
   };
   
-    return (
-      <div>
-        <h1>{`Todo List - ${tableName}`}</h1>
-        <button onClick={toggleSortOrder}>
-        Sort: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
-        </button>
-        <AddTodoForm onAddTodo={addTodo} />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-        )}
-      </div>
-    );
-  }
+  // Rendering the TodoContainer component
+  return (
+    <div>
+      <h1>{`Todo List - ${tableName}`}</h1>
+      <button onClick={toggleSortOrder}>
+      Sort: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+      </button>
+      <AddTodoForm onAddTodo={addTodo} />
+      {isLoading ? (
+      <p>Loading...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
+    </div>
+  );
+}
+
+// Prop types for TodoContainer component
+TodoContainer.propTypes = {
+  tableName: PropTypes.string.isRequired,
+};
   
-  TodoContainer.propTypes = {
-    tableName: PropTypes.string.isRequired,
-  };
-  
-  export default TodoContainer;
+export default TodoContainer;
 
 
