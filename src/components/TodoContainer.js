@@ -7,6 +7,7 @@ function TodoContainer({ tableName }) {
     
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const fetchData = async () => {
 
@@ -33,7 +34,9 @@ function TodoContainer({ tableName }) {
       const data = await response.json();
 
       const sortedTodos = data.records.sort((objectA, objectB) =>
-      objectB.fields.title.localeCompare(objectA.fields.title)
+      sortOrder === 'asc'
+        ? objectA.fields.title.localeCompare(objectB.fields.title)
+        : objectB.fields.title.localeCompare(objectA.fields.title)
     );
 
       const todos = sortedTodos.map((record) => ({
@@ -52,9 +55,13 @@ function TodoContainer({ tableName }) {
     }
   } 
 
+  const toggleSortOrder = () => {
+    setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
+
   useEffect(() => {
     fetchData()
-  }, [tableName]);
+  }, [tableName, sortOrder]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -98,6 +105,9 @@ function TodoContainer({ tableName }) {
     return (
       <div>
         <h1>{`Todo List - ${tableName}`}</h1>
+        <button onClick={toggleSortOrder}>
+        Sort: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+        </button>
         <AddTodoForm onAddTodo={addTodo} />
         {isLoading ? (
           <p>Loading...</p>
