@@ -3,28 +3,26 @@ import TodoContainer from './components/TodoContainer';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import style from './App.module.css';
 
-
 function App() {
 
   return (
     <BrowserRouter>
-       <nav>
-      <ul className={style.NavLink}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/new">New Todo</Link>
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul className={style.NavLink}>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/new">New Todo</Link>
+          </li>
+        </ul>
+      </nav>
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <h1>Todo List</h1>
-              <TodoContainer tableName="Plan for this week" />
+              <TodoContainer/>
             </>
           }
         />

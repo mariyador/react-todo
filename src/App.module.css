@@ -1,59 +1,65 @@
 body {
     background-color: rgb(50, 78, 65);
-    color:rgb(225, 231, 228);
+    background-image: url(https://img.freepik.com/free-photo/monstera-leaf-frame-on-grid-paper-background_53876-146624.jpg?w=2000&t=st=1707798847~exp=1707799447~hmac=d701386b936aad59ea9c27e8a85d2f004501e319398ada4493ec4672ba5a9eb6);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(225, 231, 228);
     font-family: 'Caveat', sans-serif;
-    font-size: 25px;
+    font-size: 2vw;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
 }
  
 .NavLink {
     list-style-position: none;
     padding: 0;
-    margin-top: 20px;
+    margin-top: 1vh;
     text-align: center;
 }
   
 .NavLink li {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 1.1vw;
+    margin-left: 1vw;
 }
   
 .NavLink a {
     text-decoration: none;
     color: black;
-    font-size: 40px;
+    font-size: 2.3vw;
+    border: 0.2vw solid #514e4e;
+    border-radius: 0.5vw;
+    background-color: rgba(217, 212, 212, 0.5);
+    width: auto;
+    padding: 0.1vw 1vw;
+    box-sizing: border-box; 
 }
 
 h1{
-    font-size: 35px;
+    font-size: 3.5vw;
+    color: black;
 }
 
-/* Media query for mobile devices */
 @media only screen and (max-width: 599px) {
     body{
-        font-size: 15px;
+        font-size: 3vw;
     }
     .NavLink a {
-        text-decoration: none;
-        color: black;
-        font-size: 23px;
+        font-size: 4vw;
     }
     h1{
-        font-size: 20px;
-    }
-    .Input {
-        width: 100%;
-    }
-}
-/* Media query for tablets */
-@media only screen and (min-width: 600px) {
-    .Input {
-        width: 50%;
+        font-size: 5vw;
     }
 }
 
-/* Media query for desktops */
+@media only screen and (min-width: 600px) {
+    
+}
+
 @media only screen and (min-width: 1024px) {
-    .Input {
-        width: 30%;
-    }
+
 }

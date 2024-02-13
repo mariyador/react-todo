@@ -2,12 +2,17 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import style from './TodoContainer.module.css';
 
-function TodoContainer({ tableName }) {
+
+function TodoContainer({ initialTableName }) {
     
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('asc');
+  const [tableName, setTableName] = useState(
+    localStorage.getItem('savedTableName') || initialTableName
+  );
 
   // Function to fetch data from Airtable
   const fetchData = useCallback(async ()  => {
@@ -111,20 +116,34 @@ function TodoContainer({ tableName }) {
   const removeTodo = (id) => {
     remoteTodo(id);
   };
+
+
+  const updateTableName = () => {
+    const newTableName = prompt('Enter a new table name:', tableName);
+    if (newTableName !== null && newTableName.trim() !== '') {
+      setTableName(newTableName.trim());
+      localStorage.setItem('savedTableName', newTableName.trim());
+    }
+  };
   
   // Rendering the TodoContainer component
   return (
-    <div>
-      <h1>{`Todo List - ${tableName}`}</h1>
-      <button onClick={toggleSortOrder}>
-      Sort: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+    <div className={style.TodoContainer}>
+      <button 
+       className={style.sortButton}
+       onClick={toggleSortOrder}
+      >
+        Sort: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
       </button>
+      <h1 className={style.title} onClick={updateTableName}>
+        {`${tableName}`}
+      </h1> 
       <AddTodoForm onAddTodo={addTodo} />
       {isLoading ? (
       <p>Loading...</p>
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
+      )}  
     </div>
   );
 }

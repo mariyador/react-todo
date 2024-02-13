@@ -1,32 +1,35 @@
-.TodoListItem {
+.todoListItem {
     display: flex;
-    align-items: center;    
-    }
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+}
 
-    .ListItem {
-    color:rgb(180, 194, 189);
-    margin-top: 1%;
-    margin-left: 2%;
-    }
+.ListItem {
+    color:rgb(32, 33, 32);
+    margin-bottom: 0.5vw;
+}
 
-    .Button {
-    margin-left: 10px;
+.Button {
+    margin-left: 1vw;
     font-family: 'Caveat', sans-serif;
-    font-size: 20px;
-    border-radius: 5px;
-    }
+    font-size: 1.3vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    background-color: rgba(217, 212, 212, 0.5);
+}
 
+.Icon {
+    margin-right: 0.5vw;
+    font-size: 1vw;
+}
+
+@media only screen and (max-width: 599px) {
     .Icon {
-    margin-right: 5px;
-    font-size: 15px;
+        font-size: 1vw;
     }
-
-    @media only screen and (max-width: 599px) {
-        .Icon {
-            font-size: 10px;
-        }
-        .Button {
-            font-size: 15px;
-          }
+    .Button {
+        font-size: 1.5vw;
     }
- 
+}
