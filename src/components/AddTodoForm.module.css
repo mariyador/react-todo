@@ -36,11 +36,47 @@
 }
 
 @media only screen and (max-width: 599px) {
+  .AddTodoForm {
+    font-size: 4vw;
+  }
   .Input {
-    height: 1.5vh;
+    height: 3vh;
+    font-size: 3vw;
   }
   .Icon {
-    font-size: 1vw;
+    font-size: 3vw;
+  }
+  .Button {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .AddTodoForm {
+    font-size: 4vw;
+  }
+  .Input {
+    height: 3vh;
+    font-size: 3vw;
+  }
+  .Icon {
+    font-size: 3vw;
+  }
+  .Button {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .AddTodoForm {
+    font-size: 2.5vw;
+  }
+  .Input {
+    height: 4vh;
+    font-size: 1.5vw;
+  }
+  .Icon {
+    font-size: 1.5vw;
   }
   .Button {
     font-size: 1.5vw;

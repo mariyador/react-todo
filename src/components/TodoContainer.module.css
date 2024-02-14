@@ -6,7 +6,7 @@
 
 .title {
     text-align: center;
-    font-size: 4vw;
+    font-size: 6vw;
     color: white;
     -webkit-text-stroke: 0.02px black;
     margin-top: 4vh;
@@ -15,7 +15,7 @@
 
 .sortButton {
     background-color: rgba(217, 212, 212, 0.5);
-    font-size: 1vw;
+    font-size: 2vw;
     padding: 0.2vw 1vw;
     border: none;
     border-radius: 0.5vw;
@@ -27,7 +27,22 @@
 
 @media only screen and (max-width: 599px) {
     .title {
-        font-size: 6vw;
+        font-size: 8vw;
+        margin-top: 6vh;
+    }
+
+    .sortButton {
+        font-size: 3vw;
+        padding: 0.3vh 1.5vw;
+        border-radius: 1vw;
+        margin-top: 1.5vh;
+        margin-right: 3vw;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1023px) {
+    .title {
+        font-size: 8vw;
         margin-top: 6vh;
     }
 
@@ -40,10 +55,18 @@
     }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 1023px) {
-
-}
-
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1200px) {
+    .title {
+        font-size: 5vw;
+        margin-top: 6vh;
+    }
     
+    .sortButton {
+        font-size: 1vw;
+        padding: 0.2vw 1vw;
+        border-radius: 0.5vw;
+        margin-top: 3vh;
+        margin-right: 2vw;
+        margin-bottom: 0.5vw;
+    }
 }
