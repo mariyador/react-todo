@@ -22,7 +22,7 @@ function App() {
           path="/"
           element={
             <>
-              <TodoContainer/>
+              <TodoContainer initialTableName="YourInitialTableName"/>
             </>
           }
         />

@@ -150,9 +150,7 @@ function TodoContainer({ initialTableName }) {
 
 // Prop types for TodoContainer component
 TodoContainer.propTypes = {
-  tableName: PropTypes.string.isRequired,
+  initialTableName: PropTypes.string.isRequired,
 };
   
 export default TodoContainer;
-
-
