@@ -3,6 +3,17 @@ import TodoContainer from './components/TodoContainer';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import style from './App.module.css';
 
+const getCurrentTimeOfDay = () => {
+  const currentHour = new Date().getHours();
+  if (currentHour >= 5 && currentHour < 12) {
+    return 'Good morning!';
+  } else if (currentHour >= 12 && currentHour < 18) {
+    return 'Good afternoon!';
+  } else {
+    return 'Good evening!';
+  }
+};
+
 function App() {
 
   return (
@@ -22,7 +33,7 @@ function App() {
         path="/"
         element={
           <div className={style.welcomeText}>
-            <h1>Hello!</h1>
+            <h1>{getCurrentTimeOfDay()}</h1>
             <p>Welcome to your daily planner! <br />
             Stay organized, stay productive.
             </p>
