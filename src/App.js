@@ -13,23 +13,28 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/new">New Todo</Link>
+            <Link to="/todolist">Todo List</Link>
           </li>
         </ul>
       </nav>
       <Routes>
+      <Route
+        path="/"
+        element={
+          <div className={style.welcomeText}>
+            <h1>Hello!</h1>
+            <p>Welcome to your daily planner! <br />
+            Stay organized, stay productive.
+            </p>
+          </div>
+        }
+      />
         <Route
-          path="/"
+          path="/todolist"
           element={
             <>
               <TodoContainer initialTableName="YourInitialTableName"/>
             </>
-          }
-        />
-        <Route
-          path="/new"
-          element={
-            <h1>New Todo List</h1>
           }
         />
       </Routes>

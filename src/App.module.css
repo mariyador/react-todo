@@ -39,9 +39,22 @@ body {
     box-sizing: border-box; 
 }
 
+.welcomeText{
+    font-size: 3vw;
+    color: black;
+    text-align: center;
+    border: 0.2vw solid #514e4e;
+    border-radius: 0.5vw;
+    width: 50vw;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(83, 131, 66, 0.609);
+    margin-top: 15vh;
+}
+
 h1{
     font-size: 3.5vw;
-    color: black;
 }
 
 @media only screen and (max-width: 599px) {
@@ -52,7 +65,11 @@ h1{
         font-size: 5vw;
     }
     h1{
+        font-size: 6vw;
+    }
+    .welcomeText{
         font-size: 5vw;
+        width: 70vw;
     }
 }
 
@@ -66,6 +83,10 @@ h1{
     h1{
         font-size: 6vw;
     }
+    .welcomeText{
+        font-size: 5vw;
+        width: 70vw;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -77,5 +98,9 @@ h1{
     }
     h1{
         font-size: 3.5vw;
+    }
+    .welcomeText{
+        font-size: 3vw;
+        width: 50vw;
     }
 }

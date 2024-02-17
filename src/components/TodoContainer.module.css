@@ -23,6 +23,7 @@
     align-self: flex-end;
     margin-top: 3vh;
     margin-right: 2vw;
+    z-index: 2;
 }
 
 @media only screen and (max-width: 599px) {
