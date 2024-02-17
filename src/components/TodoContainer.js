@@ -9,7 +9,7 @@ function TodoContainer({ initialTableName }) {
     
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortOrder, setSortOrder] = useState(localStorage.getItem('savedSortOrder') || 'asc');
   const [tableName, setTableName] = useState(
     localStorage.getItem('savedTableName') || initialTableName
   );
@@ -66,7 +66,11 @@ function TodoContainer({ initialTableName }) {
     
   // Function to toggle sorting order (asc/desc)
   const toggleSortOrder = () => {
-    setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+    setSortOrder((prevOrder) => {
+      const newOrder = prevOrder === 'asc' ? 'desc' : 'asc';
+      localStorage.setItem('savedSortOrder', newOrder);
+      return newOrder;
+    });
   };
 
   // useEffect to fetch data when tableName or sortOrder changes
