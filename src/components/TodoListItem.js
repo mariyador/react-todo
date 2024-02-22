@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 
 function TodoListItem({ todo, onRemoveTodo }) {
     return (
-        <li className={style.ListItem}>
+        <div className={style.todoListItem}>
+            <li className={style.ListItem}>
             {todo.title}
             <button type="button" onClick={() => onRemoveTodo(todo.id)} className={style.Button}>
             <FaTrash className={style.Icon}  />
-            Remove
+                Remove
             </button>
         </li>
+        </div>    
     )
 }
 
